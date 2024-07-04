@@ -24,16 +24,9 @@ public class Arm_Angles : MonoBehaviour
     {
         if(kamera != null && hand != null)
         {
-            Vector3 camerapoint = kamera.transform.position;
-            Vector3 handpoint = hand.transform.position;
             Vector3 hedkaiten = player.transform.localEulerAngles - kamera.transform.localEulerAngles ;
             Vector3 handangle = hand.transform.localEulerAngles + new Vector3(0.0f, hedkaiten.y, 0.0f); 
-            camerapoint.y = camerapoint.y + hedoffset;
-            Vector3 c = handpoint - camerapoint;
-            c = c.normalized;
-            Vector3 point = handpoint + c * kyori;
             tf.localEulerAngles = handangle;
-            rb.velocity = (point - tf.position) * 10;
         }
     }
 }

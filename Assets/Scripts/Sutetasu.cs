@@ -22,7 +22,7 @@ public class Sutetasu : MonoBehaviour
             hp = 0;
             Destroy(this.gameObject);
         }
-        Debug.Log("’É‚¢‚æ");
+        
     }
 }
     
