@@ -10,6 +10,7 @@ public class Arm_action : MonoBehaviour
     [SerializeField] float kyori;
     [SerializeField] float hedoffset;
     [SerializeField] float pow = 1.0f;
+    [SerializeField] float Shottime = 2.0f;
     [SerializeField] Arm_flring flring;
 
     private Rigidbody rb;
@@ -18,6 +19,11 @@ public class Arm_action : MonoBehaviour
     private Vector3 camerapoint;
     private Vector3 handpoint;
     private Vector3 handmokuhyoupoint;
+    private Vector3 ShotAngle;
+
+    private bool Shotf = false;
+    private float timecount = 0.0f;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -33,18 +39,23 @@ public class Arm_action : MonoBehaviour
         {
             camerapoint = kamera.transform.position;
             handpoint = hand.transform.position;
-            Vector3 point = Arm_move();
+
+            Vector3 point;
+            if (Shotf)
+            {
+               point = Arm_Trshot();
+            }
+            else
+            {
+               point = Arm_move();
+            }
             Vector3 angle = Arm_angles();
             rb.velocity = point;
             tf.localEulerAngles = angle;
-            if (flring != null)
-            {
-                flring.FlringStart();
-            }
         }
     }
 
-    public Vector3 Arm_move()
+    private Vector3 Arm_move()
     {     
             camerapoint.y = camerapoint.y + hedoffset;
             Vector3 c = handpoint - camerapoint;
@@ -54,17 +65,27 @@ public class Arm_action : MonoBehaviour
             return handmokuhyoupoint;
     }
 
-    public Vector3 Arm_angles()
+    private Vector3 Arm_angles()
     {
            Vector3 hedkaiten = player.transform.localEulerAngles - kamera.transform.localEulerAngles;
            Vector3 handangle = hand.transform.localEulerAngles + new Vector3(0.0f, hedkaiten.y, 0.0f);
            return handangle;
     }
 
-    public Vector3 Arm_Trshot()
+    private Vector3 Arm_Trshot()
     {
-
-        return new Vector3(0,0,0);
+        Vector3 vekutoru = tf.forward - ShotAngle;
+        vekutoru = vekutoru * pow;
+        return vekutoru;
     }
     
+    public void Arm_Shot()
+    {
+        if (!Shotf)
+        {
+            Shotf = true;
+            ShotAngle = tf.forward;
+            timecount = 0.0f;
+        }
+    }
 }
