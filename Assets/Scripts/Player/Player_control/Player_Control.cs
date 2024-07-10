@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class Player_Control : MonoBehaviour
 {
-    [SerializeField]private GameObject Grabhand;
-    private Grab_hand grab_Hand;
+    [SerializeField]private GameObject LeftGrabhand;
+    [SerializeField] private GameObject RightGrabhand;
+    private Grab_hand leftgrab_Hand;
+    private Grab_hand rightgrab_Hand;
     // Start is called before the first frame update
     void Start()
     {
-        grab_Hand = Grabhand.GetComponent<Grab_hand>();
+        leftgrab_Hand = LeftGrabhand.GetComponent<Grab_hand>();
+        rightgrab_Hand = RightGrabhand.GetComponent<Grab_hand>();
     }
 
     // Update is called once per frame
@@ -42,20 +45,28 @@ public class Player_Control : MonoBehaviour
         }
         if (OVRInput.GetDown(OVRInput.RawButton.RHandTrigger))
         {
-           // Debug.Log("右中指グリップを押した");
+            rightgrab_Hand.GrabStart();
+        }else if (OVRInput.GetUp(OVRInput.RawButton.RHandTrigger))
+        {
+            rightgrab_Hand.GrabEnd();
         }
         if (OVRInput.GetDown(OVRInput.RawButton.LIndexTrigger))
         {
-           // Debug.Log("左人差し指トリガーを押した");
+            
+            
+        }
+        else if (OVRInput.GetUp(OVRInput.RawButton.LIndexTrigger))
+        {
+            
         }
         if (OVRInput.GetDown(OVRInput.RawButton.LHandTrigger))
         {
             Debug.Log("左中指グリップを押した");
-            grab_Hand.GrabStart();
+            leftgrab_Hand.GrabStart();
         }
         else if(OVRInput.GetUp(OVRInput.RawButton.LHandTrigger))
         {
-            grab_Hand.GrabEnd();
+            leftgrab_Hand.GrabEnd();
         }
     }
 }

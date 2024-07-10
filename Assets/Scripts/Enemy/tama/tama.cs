@@ -34,5 +34,6 @@ public class tama : MonoBehaviour
             
 
         }
+        Destroy(this.gameObject);
     }
 }

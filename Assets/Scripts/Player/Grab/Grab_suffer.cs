@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class Grab_suffer : MonoBehaviour
 {
+    [SerializeField] int Grab_Atack_pow = 0;
+    [SerializeField] float Atack_pow_speedlmit = 0.0f;
+
     private bool Grab_Trigger = false;
     private GameObject hand;
     private Transform handTf;
+    private Rigidbody handRB;
+    private Grab_hand handcs;
     private Rigidbody myRB;
     private Transform myTf;
     private Vector3 speed=Vector3.zero;
@@ -15,14 +20,17 @@ public class Grab_suffer : MonoBehaviour
         
         hand = Grab_hand;
         handTf = hand.GetComponent<Transform>();
+        handRB = hand.GetComponent<Rigidbody>();
+        handcs = hand.GetComponent<Grab_hand>();
         Grab_Trigger = true;
 
     }
     public void GrabEnd()//離された際に行う事
     {
         Grab_Trigger = false;
+        speed = handRB.velocity;
         myRB.AddForce(speed, ForceMode.Impulse);
-        speed = Vector3.zero;
+        
         hand = null;
         handTf = null;
     }
@@ -37,11 +45,20 @@ public class Grab_suffer : MonoBehaviour
         myRB = this.gameObject.GetComponent<Rigidbody>();
         myTf = this.gameObject.GetComponent<Transform>();
     }
-    private void FixedUpdate()
+
+    private void OnCollisionEnter(Collision collision)
     {
         if (Grab_Trigger)
         {
-            speed = myRB.velocity;
+            //掴まれた際にアタックモードになる
+            if(myRB.velocity.magnitude >= Atack_pow_speedlmit && collision.gameObject.tag != "Player")
+            {
+                Sutetasu status = collision.gameObject.GetComponent<Sutetasu>();
+                if ( status != null)
+                {
+                    status.Damage(Grab_Atack_pow);
+                }
+            }
         }
     }
 
