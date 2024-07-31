@@ -21,14 +21,15 @@ public class Arm_action : MonoBehaviour
     private Vector3 handmokuhyoupoint;
     private Vector3 ShotAngle;
 
-    private bool Shotf = false;
+    private bool Shotf = false;//òrÇ™îÚÇ‘Ç∆Ç´Ç…ON
+    private bool Ankar = false;//òrÇ™ínñ ìôÇ…ê⁄íÖÇµÇƒÇÈéûÇ…ON
     private float timecount = 0.0f;
     
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        Prb = GetComponent<Rigidbody>();
+        Prb = player.GetComponent<Rigidbody>();
         tf = GetComponent<Transform>();
     }
 
@@ -50,8 +51,17 @@ public class Arm_action : MonoBehaviour
                point = Arm_move();
             }
             Vector3 angle = Arm_angles();
-            rb.velocity = point;
-            tf.localEulerAngles = angle;
+            if (true)
+            {
+                rb.velocity = point;
+                tf.localEulerAngles = angle;
+            }
+            else
+            {
+                Prb.velocity = point * -1;
+                tf.localEulerAngles = angle;
+            }
+            
         }
     }
 
@@ -87,5 +97,17 @@ public class Arm_action : MonoBehaviour
             ShotAngle = tf.forward;
             timecount = 0.0f;
         }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        var Tag = collision.gameObject.tag;
+        if(Tag != "Player")
+        {
+            Ankar = true;
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        Ankar = false;
     }
 }

@@ -8,6 +8,7 @@ public class Grab_suffer : MonoBehaviour
     [SerializeField] float Atack_pow_speedlmit = 0.0f;
 
     private bool Grab_Trigger = false;
+    private bool Grab_Atack_Trigger = false;
     private GameObject hand;
     private Transform handTf;
     private Rigidbody handRB;
@@ -28,9 +29,6 @@ public class Grab_suffer : MonoBehaviour
     public void GrabEnd()//離された際に行う事
     {
         Grab_Trigger = false;
-        speed = handRB.velocity;
-        myRB.AddForce(speed, ForceMode.Impulse);
-        
         hand = null;
         handTf = null;
     }
@@ -38,6 +36,10 @@ public class Grab_suffer : MonoBehaviour
     public bool GrabCeak()//同オブジェクトの他のスクリプトから持たれているかチェックするよ
     {
         return Grab_Trigger;
+    }
+    public bool GrabAtackCeak()//他のスクリプトからアタック判定になっているかチェックするよ
+    {
+        return Grab_Atack_Trigger;
     }
 
     private void Start()
@@ -54,10 +56,15 @@ public class Grab_suffer : MonoBehaviour
             if(myRB.velocity.magnitude >= Atack_pow_speedlmit && collision.gameObject.tag != "Player")
             {
                 Sutetasu status = collision.gameObject.GetComponent<Sutetasu>();
+                Grab_Atack_Trigger = true;
                 if ( status != null)
                 {
                     status.Damage(Grab_Atack_pow);
                 }
+            }
+            else
+            {
+                Grab_Atack_Trigger = false;
             }
         }
     }
