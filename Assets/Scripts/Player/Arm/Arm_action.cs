@@ -14,7 +14,7 @@ public class Arm_action : MonoBehaviour
     [SerializeField] Arm_flring flring;
 
     private Rigidbody rb;
-    private Rigidbody Prb;
+    private CharacterController PCc;
     private Transform tf;
     private Vector3 camerapoint;
     private Vector3 handpoint;
@@ -29,7 +29,7 @@ public class Arm_action : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        Prb = player.GetComponent<Rigidbody>();
+        PCc = player.GetComponent<CharacterController>();
         tf = GetComponent<Transform>();
     }
 
@@ -51,17 +51,13 @@ public class Arm_action : MonoBehaviour
                point = Arm_move();
             }
             Vector3 angle = Arm_angles();
-            if (true)
+
+            rb.velocity = point;
+            tf.localEulerAngles = angle;
+            if (Ankar)
             {
-                rb.velocity = point;
-                tf.localEulerAngles = angle;
+                PCc.Move(point * -1 *Time.deltaTime);
             }
-            else
-            {
-                Prb.velocity = point * -1;
-                tf.localEulerAngles = angle;
-            }
-            
         }
     }
 
