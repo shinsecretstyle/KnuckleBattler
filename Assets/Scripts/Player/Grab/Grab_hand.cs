@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class Grab_hand : MonoBehaviour
 {
+    [SerializeField] Arm_action Arm;
+   // [SerializeField] GameObject hantei;
     private GameObject GrabGO;
+    private Hominghantei Homics;
     private Grab_suffer GOs;
     private FixedJoint Fj;
+    private Vector3 bekutoru;
     private bool handTrigger = false;
     private bool GrabTrigger = false;
     private bool button = false;
@@ -45,13 +49,30 @@ public class Grab_hand : MonoBehaviour
     {
         if (GrabTrigger)
         {
+            bekutoru = Arm.Handekutoru();
             Fj.connectedBody = null;
-            GOs.GrabEnd();
+            /*
+            GameObject taget = Homics.Itibantikaiyaru();
+            if(taget != null)
+            {
+                GOs.GrabEndTaget(taget);
+            }
+            */
+            GOs.GrabEnd(bekutoru);
             GrabTrigger = false;
         }
     }
     private void Start()
     {
         Fj = this.gameObject.GetComponent<FixedJoint>();
+        //Homics = hantei.GetComponent<Hominghantei>();
+    }
+    private void FixedUpdate()
+    {
+        /*
+        bekutoru = Arm.Handekutoru();
+        Vector3 kakudo = bekutoru.normalized;
+        hantei.transform.eulerAngles = kakudo;
+        */
     }
 }

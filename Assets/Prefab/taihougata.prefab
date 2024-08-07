@@ -199,6 +199,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: taihougata
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ba54dd225b749b540a1cae5bda427a6d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

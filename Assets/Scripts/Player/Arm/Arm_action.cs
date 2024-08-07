@@ -14,12 +14,13 @@ public class Arm_action : MonoBehaviour
     [SerializeField] Arm_flring flring;
 
     private Rigidbody rb;
-    private CharacterController PCc;
+    private Rigidbody PCc;
     private Transform tf;
     private Vector3 camerapoint;
     private Vector3 handpoint;
     private Vector3 handmokuhyoupoint;
     private Vector3 ShotAngle;
+    private Vector3 point;
 
     private bool Shotf = false;//òrÇ™îÚÇ‘Ç∆Ç´Ç…ON
     private bool Ankar = false;//òrÇ™ínñ ìôÇ…ê⁄íÖÇµÇƒÇÈéûÇ…ON
@@ -29,7 +30,7 @@ public class Arm_action : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        PCc = player.GetComponent<CharacterController>();
+        PCc = player.GetComponent<Rigidbody>();
         tf = GetComponent<Transform>();
     }
 
@@ -41,7 +42,7 @@ public class Arm_action : MonoBehaviour
             camerapoint = kamera.transform.position;
             handpoint = hand.transform.position;
 
-            Vector3 point;
+            
             if (Shotf)
             {
                point = Arm_Trshot();
@@ -52,12 +53,15 @@ public class Arm_action : MonoBehaviour
             }
             Vector3 angle = Arm_angles();
 
-            rb.velocity = point;
+            rb.velocity =point;
             tf.localEulerAngles = angle;
-            if (Ankar)
+            
+            if (false)
             {
-                PCc.Move(point * -1 *Time.deltaTime);
+                PCc.AddForce(point * -1);
             }
+            
+            
         }
     }
 
@@ -66,8 +70,8 @@ public class Arm_action : MonoBehaviour
             camerapoint.y = camerapoint.y + hedoffset;
             Vector3 c = handpoint - camerapoint;
             c = c.normalized;
-            Vector3 point = handpoint + c * kyori;
-            handmokuhyoupoint = (point - tf.position) * 10;
+            Vector3 nextpoint = handpoint + c * kyori;         
+            handmokuhyoupoint = (nextpoint - tf.position) * 10;
             return handmokuhyoupoint;
     }
 
@@ -75,7 +79,9 @@ public class Arm_action : MonoBehaviour
     {
            Vector3 hedkaiten = player.transform.localEulerAngles - kamera.transform.localEulerAngles;
            Vector3 handangle = hand.transform.localEulerAngles + new Vector3(0.0f, hedkaiten.y, 0.0f);
-           return handangle;
+        //return handangle;
+
+        return hand.transform.eulerAngles;
     }
 
     private Vector3 Arm_Trshot()
@@ -105,5 +111,9 @@ public class Arm_action : MonoBehaviour
     private void OnCollisionExit(Collision collision)
     {
         Ankar = false;
+    }
+    public Vector3 Handekutoru()
+    {
+        return point;
     }
 }
