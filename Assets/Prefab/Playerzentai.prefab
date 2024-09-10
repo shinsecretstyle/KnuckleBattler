@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c5b8cebdc9cec6479cdd6268ed05ceb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Arm: {fileID: 0}
 --- !u!54 &7861283835683248923
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -172,7 +173,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5339417143866228068}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Playerzentai
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -316,6 +317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c5b8cebdc9cec6479cdd6268ed05ceb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Arm: {fileID: 0}
 --- !u!54 &7063875348287428045
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -892,7 +894,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockId: e47682b9-c270-40b1-b16d-90b627a5ce1b
-  instanceId: e6adab02-2d07-4b7c-b875-3f50190614e0
+  instanceId: 54fb4188-3862-455c-b35b-444953f846b8
   version: 1
   installationRoutineCheckpoint:
     _installationRoutineId: 
@@ -980,6 +982,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp_max: 3
+  Playermode: 0
   OnDeath:
     m_PersistentCalls:
       m_Calls:
@@ -1144,7 +1147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockId: 5817f7c0-f2a5-45f9-a5ca-64264e0166e8
-  instanceId: 3843781a-4de6-4dfb-92b8-04f91e8f609f
+  instanceId: 1102a82a-b22b-4797-a056-2b3e29e38918
   version: 1
   installationRoutineCheckpoint:
     _installationRoutineId: 
@@ -1168,7 +1171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockId: 5817f7c0-f2a5-45f9-a5ca-64264e0166e8
-  instanceId: db7e2d56-bb35-43ea-b14e-24393b414a6c
+  instanceId: 9582f227-bf85-498c-9c52-f435a40f94d8
   version: 1
   installationRoutineCheckpoint:
     _installationRoutineId: 

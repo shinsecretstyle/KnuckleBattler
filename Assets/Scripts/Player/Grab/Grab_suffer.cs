@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Grab_suffer : MonoBehaviour
 {
-    [Tooltip("掴まれて振り回された時の攻撃力")]
-    [SerializeField] int GrabAttackPower = 0;
+   
+    [SerializeField,Tooltip("掴まれて振り回された時の攻撃力")] int GrabAttackPower = 0;
     [SerializeField] GameObject tuibisaki;
     private float AttackSpeedLimit = 1f;
     private float AttackThrownSpeedLimit = 2f;
@@ -58,7 +58,7 @@ public class Grab_suffer : MonoBehaviour
     }
     public bool GrabCeak()//同オブジェクトの他のスクリプトから持たれているかチェックするよ
     {
-        return Grab_Trigger;
+        return Grab_Trigger;//trueだったら持ってるよ
     }
     public bool GrabAtackCeak()//他のスクリプトからアタック判定になっているかチェックするよ
     {

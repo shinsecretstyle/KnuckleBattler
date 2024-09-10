@@ -8,6 +8,6 @@ public class Player_Die : MonoBehaviour
     public void Die()
     {
         Debug.Log("‚»‚¤‚Í‚È‚ç‚ñ‚â‚ë");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("ƒŠƒUƒ‹ƒg");
     }
 }
