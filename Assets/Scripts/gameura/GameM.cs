@@ -50,5 +50,9 @@ public class GameM : MonoBehaviour
         }
         
     }
+    public void Scoretuika(int eney ,int kazu)
+    {
+        enemykazu[eney] += kazu;
+    }
     
 }
