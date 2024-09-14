@@ -17,7 +17,7 @@ public class hyouzihyouzi : MonoBehaviour
 
     private void Start()
     {
-        int[] tekidayo = { 5, 1, 2 };
+        int[] tekidayo = GameM.instance.EnemyScorePull();
         HyouziAwake(tekidayo);
     }
     public void HyouziAwake(int[] teki)

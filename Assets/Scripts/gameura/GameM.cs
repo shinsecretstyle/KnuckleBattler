@@ -12,7 +12,7 @@ public class GameM : MonoBehaviour
     private GameObject Player;
     private Transform Playerpoint;
 
-    private void Awake()
+    private void Awake()//シングルトン
     {
         if (instance == null)
         {
@@ -33,12 +33,12 @@ public class GameM : MonoBehaviour
     {
         return hp;
     }
-    public void PlayerGameobj(GameObject plyer)
+    public void PlayerGameobj(GameObject plyer)//プレイヤーのゲームオブジェクトを送り込む奴。プレイヤー以外の他のオブジェクトを入れないで欲しい
     {
         Player = plyer;
         Playerpoint = Player.GetComponent<Transform>();
     }
-    public Transform PlayerPositon()
+    public Transform PlayerPositon()//一応作ったプレイヤーの場所確認できるやつ。プレイヤーがセットされてなければnullを返す
     {
         if (Playerpoint != null)
         {
@@ -50,9 +50,13 @@ public class GameM : MonoBehaviour
         }
         
     }
-    public void Scoretuika(int eney ,int kazu)
+    public void Scoretuika(int enemy )//倒れた敵はここにアクセスしてキルカウントに一つ追加される。
     {
-        enemykazu[eney] += kazu;
+        enemykazu[enemy] += 1;
+    }
+    public int[] EnemyScorePull()//倒した敵のスコアを確認する為の奴。配列なので注意
+    {
+        return enemykazu;
     }
     
 }
