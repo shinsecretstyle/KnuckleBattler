@@ -8,7 +8,6 @@ public class Arm_Attack : MonoBehaviour
     [SerializeField] int attack_pow;
     [SerializeField] string damage_side;
     [SerializeField] float Armspeedlmit;
-    [SerializeField] Grab_hand Grabh;
     private Sutetasu status;
     private float Armspeed;
     private Rigidbody RB;
@@ -26,36 +25,15 @@ public class Arm_Attack : MonoBehaviour
     {
         if(collision.gameObject.tag == damage_side)
         {
-            bool nullceak = Grabh.GrabGnullceak();
-            if (nullceak)
+            Debug.Log(Armspeed);
+            if(Armspeed >= Armspeedlmit)
             {
-                GameObject GrabG = Grabh.GrabG();
-                if(GrabG != collision.gameObject)
+                status = collision.gameObject.GetComponent<Sutetasu>();
+                if (status != null)
                 {
-                    Debug.Log(Armspeed);
-                    if (Armspeed >= Armspeedlmit)
-                    {
-                        status = collision.gameObject.GetComponent<Sutetasu>();
-                        if (status != null)
-                        {
-                            status.Damage(attack_pow);
-                        }
-                    }
+                    status.Damage(attack_pow);
                 }
             }
-            else
-            {
-                Debug.Log(Armspeed);
-                if (Armspeed >= Armspeedlmit)
-                {
-                    status = collision.gameObject.GetComponent<Sutetasu>();
-                    if (status != null)
-                    {
-                        status.Damage(attack_pow);
-                    }
-                }
-            }
-            
 
         }
     }

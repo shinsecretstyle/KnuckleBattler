@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class houdai_Die : MonoBehaviour
 {
-    [SerializeField, Tooltip("エネミーナンバー")] int enemynumber;
     public void Die()
     {
-        
         Destroy(this.gameObject);
     }
 }

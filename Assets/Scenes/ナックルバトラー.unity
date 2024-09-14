@@ -10732,7 +10732,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp_max: 10
-  Playermode: 0
   OnDeath:
     m_PersistentCalls:
       m_Calls:
@@ -10873,8 +10872,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76d11c4abcdf0ee42a403c7433fa4e16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GrabAttackPower: 0
-  tuibisaki: {fileID: 0}
+  Grab_Atack_pow: 7
+  Atack_pow_speedlmit: 6
 --- !u!114 &2037299618
 MonoBehaviour:
   m_ObjectHideFlags: 0

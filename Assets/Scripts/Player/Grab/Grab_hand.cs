@@ -75,21 +75,4 @@ public class Grab_hand : MonoBehaviour
         hantei.transform.eulerAngles = kakudo;
         */
     }
-    public GameObject GrabG()
-    {
-        return GrabGO;//Šî–{“I‚É‹ó‚¾‚©‚ç’ˆÓ
-    }
-    public bool GrabGnullceak()
-    {
-        bool nullkana=false;
-        if(GrabGO == null)
-        {
-            nullkana = false;
-        }
-        else
-        {
-            nullkana = true;
-        }
-        return nullkana;
-    }
 }
